@@ -30,22 +30,28 @@ trap finish_backup EXIT
 #=================================================
 if systemctl is-active --quiet "$app"; then
     service_was_active=true
-    ynh_script_progression "Stopping ChaptarrNG for a consistent database backup..."
+    ynh_print_info "Stopping ChaptarrNG for a consistent database snapshot..."
 
     ynh_systemctl --service="$app" --action="stop"
 fi
 
 #=================================================
+# SNAPSHOT THE DATA DIR
+#=================================================
+ynh_print_info "Snapshotting ChaptarrNG configuration and database..."
+
+mkdir -p "$YNH_APP_BACKUP_DIR/data"
+rsync --archive --delete \
+    --exclude="/cache/" \
+    --exclude="/logs/" \
+    "$data_dir/" "$YNH_APP_BACKUP_DIR/data/"
+
+#=================================================
 # BACKUP THE APP MAIN DIR
 #=================================================
-ynh_script_progression "Declaring ChaptarrNG files for backup..."
+ynh_print_info "Declaring ChaptarrNG files for backup..."
 
 ynh_backup "$install_dir"
-
-#=================================================
-# BACKUP THE DATA DIR
-#=================================================
-ynh_backup "$data_dir"
 
 #=================================================
 # BACKUP SYSTEM CONFIGURATION

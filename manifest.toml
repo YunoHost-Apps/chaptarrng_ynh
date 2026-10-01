@@ -5,7 +5,7 @@ packaging_format = 2
 id = "chaptarrng"
 name = "ChaptarrNG"
 description.en = "Manage audiobook libraries, chapter metadata, and conversions"
-version = "0.9.938~ynh1"
+version = "0.9.939~ynh1"
 maintainers = ["snapetech"]
 
 [upstream]
@@ -42,10 +42,10 @@ ram.runtime = "512M"
     [resources.sources.main]
     in_subdir = false
     format = "tar.gz"
-    amd64.url = "https://github.com/snapetech/chaptarrng/releases/download/v0.9.938/chaptarrng-v0.9.938-linux-amd64-yunohost.tar.gz"
-    amd64.sha256 = "b6f9a3da63c96b04ecdc020ad117a7b84f17d85f2ca1363a07547b5a2fad15ab"
-    arm64.url = "https://github.com/snapetech/chaptarrng/releases/download/v0.9.938/chaptarrng-v0.9.938-linux-arm64-yunohost.tar.gz"
-    arm64.sha256 = "67de01fd00e2884cf2097b617d392c26cf613f5fccb5cf2670e066e25661019f"
+    amd64.url = "https://github.com/snapetech/chaptarrng/releases/download/v0.9.939/chaptarrng-v0.9.939-linux-amd64-yunohost.tar.gz"
+    amd64.sha256 = "3b1c65a5b0e47b2812491ecf03ae931f4206d37aa04978e165de12ec69981f1e"
+    arm64.url = "https://github.com/snapetech/chaptarrng/releases/download/v0.9.939/chaptarrng-v0.9.939-linux-arm64-yunohost.tar.gz"
+    arm64.sha256 = "6a92e6664b16d6470d5efb5784f8470d964349295380b94d88d2879d55477611"
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset.amd64 = "^chaptarrng-v.*-linux-amd64-yunohost\\.tar\\.gz$"
     autoupdate.asset.arm64 = "^chaptarrng-v.*-linux-arm64-yunohost\\.tar\\.gz$"

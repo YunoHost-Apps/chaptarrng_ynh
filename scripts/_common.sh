@@ -1,10 +1,12 @@
 #!/bin/bash
 
-source /usr/share/yunohost/helpers
+#=================================================
+# COMMON VARIABLES AND CUSTOM HELPERS
+#=================================================
 
 chaptarrng_install_runtime() {
     local debian_version
-    debian_version="$(. /etc/os-release; printf '%s' "${VERSION_ID%%.*}")"
+    debian_version="$(. /etc/os-release; printf '%s' "$VERSION_ID" | cut -d. -f1)"
 
     case "$debian_version" in
         12|13) ;;
@@ -27,4 +29,8 @@ chaptarrng_prepare_service() {
 
 chaptarrng_register_service() {
     yunohost service add "$app" --description="ChaptarrNG audiobook library service"
+}
+
+chaptarrng_start_service() {
+    ynh_systemctl --service="$app" --action="start"
 }

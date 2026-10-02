@@ -5,7 +5,7 @@ packaging_format = 2
 id = "chaptarrng"
 name = "ChaptarrNG"
 description.en = "Manage audiobook libraries, chapter metadata, and conversions"
-version = "0.9.938~ynh2"
+version = "0.9.938~ynh3"
 maintainers = ["snapetech"]
 
 [upstream]
@@ -14,7 +14,7 @@ code = "https://github.com/snapetech/chaptarrng"
 admindoc = "https://github.com/snapetech/chaptarrng#readme"
 
 [integration]
-yunohost = ">= 12.1.17"
+yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = ["amd64", "arm64"]
 multi_instance = true
@@ -27,11 +27,6 @@ ram.runtime = "512M"
 [install]
     [install.domain]
     type = "domain"
-
-    [install.path]
-    type = "path"
-    default = "/"
-    pattern = { regexp = "^/$", error = "ChaptarrNG must be installed at the root of a dedicated domain." }
 
     [install.init_main_permission]
     type = "group"
@@ -65,4 +60,4 @@ ram.runtime = "512M"
     main.exposed = false
 
     [resources.apt]
-    packages = "ffmpeg, php-cli, php-mbstring, php-xml, php-curl, php-zip, php-json, sqlite3, libsqlite3-0, rsync"
+    packages = "ffmpeg, php8.5-cli, php8.5-mbstring, php8.5-xml, php8.5-curl, php8.5-zip, php8.5-sqlite3, sqlite3, libsqlite3-0, rsync"

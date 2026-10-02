@@ -10,7 +10,7 @@ It shall NOT be edited by hand.
 
 Manage audiobook libraries, chapter metadata, and conversions
 
-[![Version: 0.9.938~ynh2](https://img.shields.io/badge/Version-0.9.938~ynh2-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/chaptarrng/)
+[![Version: 0.9.938~ynh3](https://img.shields.io/badge/Version-0.9.938~ynh3-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/chaptarrng/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/chaptarrng"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>

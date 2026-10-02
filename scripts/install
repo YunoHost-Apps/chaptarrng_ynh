@@ -20,7 +20,6 @@ chaptarrng_install_runtime
 ynh_script_progression "Installing the pinned ChaptarrNG release..."
 
 ynh_setup_source --dest_dir="$install_dir"
-chown -R "$app:$app" "$install_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -28,14 +27,14 @@ chown -R "$app:$app" "$install_dir"
 ynh_script_progression "Configuring the media group, Nginx proxy, and systemd service..."
 
 chaptarrng_prepare_service
-chaptarrng_register_service
+yunohost service add "$app" --description="ChaptarrNG audiobook library service"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting ChaptarrNG..."
 
-chaptarrng_start_service
+ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT

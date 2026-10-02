@@ -29,11 +29,3 @@ chaptarrng_prepare_service() {
     ynh_config_add_nginx
     ynh_config_add_systemd
 }
-
-chaptarrng_register_service() {
-    yunohost service add "$app" --description="ChaptarrNG audiobook library service"
-}
-
-chaptarrng_start_service() {
-    ynh_systemctl --service="$app" --action="start"
-}

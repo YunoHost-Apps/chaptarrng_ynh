@@ -42,7 +42,7 @@ yunohost service add "$app" --description="Audiobook library service" --log="/va
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting ChaptarrNG..."
+ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="start"
 

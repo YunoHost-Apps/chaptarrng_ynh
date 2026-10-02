@@ -17,6 +17,7 @@ ynh_restore "$install_dir"
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
+
 if [[ ! -d "$YNH_APP_BACKUP_DIR/data" ]]; then
     ynh_die --message="ChaptarrNG database and configuration snapshot is missing from this backup."
 fi
@@ -31,22 +32,28 @@ chaptarrng_install_runtime
 chown -R "$app:$app" "$install_dir" "$data_dir"
 
 #=================================================
-# REAPPLY SYSTEM CONFIGURATION
+# RESTORE SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression "Restoring the ChaptarrNG service and reverse proxy..."
+ynh_script_progression "Restoring system configurations related to $app..."
 
 ynh_multimedia_build_main_dir
 ynh_multimedia_addaccess "$app"
-ynh_config_add_nginx
-ynh_config_add_systemd
-yunohost service add "$app" --description="ChaptarrNG audiobook library service"
+
+ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
+
+ynh_restore "/etc/systemd/system/$app.service"
+systemctl enable "$app.service" --quiet
+
+yunohost service add "$app" --description="Audiobook library service" --log="/var/log/$app/$app.log"
 
 #=================================================
-# START SYSTEMD SERVICE
+# RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
 #=================================================
-ynh_script_progression "Starting ChaptarrNG..."
+ynh_script_progression "Reloading NGINX web server and $app's service..."
 
 ynh_systemctl --service="$app" --action="start"
+
+ynh_systemctl --service=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

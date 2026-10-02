@@ -1,5 +1,5 @@
 [Unit]
-Description=ChaptarrNG audiobook library service
+Description=ChaptarrNG: audiobook library service
 After=network.target
 
 [Service]

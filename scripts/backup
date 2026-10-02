@@ -28,6 +28,7 @@ trap finish_backup EXIT
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
+
 if systemctl is-active --quiet "$app"; then
     service_was_active=true
     ynh_print_info "Stopping ChaptarrNG for a consistent database snapshot..."
@@ -49,16 +50,19 @@ rsync --archive --delete \
 #=================================================
 # BACKUP THE APP MAIN DIR
 #=================================================
-ynh_print_info "Declaring ChaptarrNG files for backup..."
 
 ynh_backup "$install_dir"
 
 #=================================================
 # BACKUP SYSTEM CONFIGURATION
 #=================================================
+
 ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
+
 ynh_backup "/etc/systemd/system/$app.service"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
+
+ynh_print_info "Backup script completed for $app. (YunoHost will then actually copy those files to the archive)."

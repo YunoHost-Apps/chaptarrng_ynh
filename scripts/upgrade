@@ -33,7 +33,8 @@ ynh_setup_source --dest_dir="$install_dir" --full_replace
 #=================================================
 ynh_script_progression "Refreshing ChaptarrNG's service and reverse proxy..."
 
-chaptarrng_prepare_service
+ynh_config_add_nginx
+ynh_config_add_systemd
 
 #=================================================
 # START SYSTEMD SERVICE

@@ -26,7 +26,11 @@ ynh_setup_source --dest_dir="$install_dir"
 #=================================================
 ynh_script_progression "Configuring the media group, Nginx proxy, and systemd service..."
 
-chaptarrng_prepare_service
+install -d -o "$app" -g "$app" -m 0700 "$data_dir" "$data_dir/tmp"
+ynh_multimedia_build_main_dir
+ynh_multimedia_addaccess "$app"
+ynh_config_add_nginx
+ynh_config_add_systemd
 yunohost service add "$app" --description="ChaptarrNG audiobook library service"
 
 #=================================================

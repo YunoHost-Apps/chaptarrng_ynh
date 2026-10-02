@@ -21,11 +21,3 @@ chaptarrng_install_runtime() {
         --package="aspnetcore-runtime-10.0" \
         --key="https://packages.microsoft.com/keys/$microsoft_signing_key"
 }
-
-chaptarrng_prepare_service() {
-    install -d -o "$app" -g "$app" -m 0700 "$data_dir" "$data_dir/tmp"
-    ynh_multimedia_build_main_dir
-    ynh_multimedia_addaccess "$app"
-    ynh_config_add_nginx
-    ynh_config_add_systemd
-}

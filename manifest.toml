@@ -5,7 +5,7 @@ packaging_format = 2
 id = "chaptarrng"
 name = "ChaptarrNG"
 description.en = "Manage audiobook libraries, chapter metadata, and conversions"
-version = "0.9.938~ynh3"
+version = "0.9.938~ynh4"
 maintainers = ["snapetech"]
 
 [upstream]

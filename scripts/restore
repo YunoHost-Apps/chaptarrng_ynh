@@ -35,18 +35,18 @@ chown -R "$app:$app" "$install_dir" "$data_dir"
 #=================================================
 ynh_script_progression "Restoring the ChaptarrNG service and reverse proxy..."
 
-chaptarrng_prepare_service
-ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
-ynh_restore "/etc/systemd/system/$app.service"
-systemctl enable "$app.service" --quiet
-chaptarrng_register_service
+ynh_multimedia_build_main_dir
+ynh_multimedia_addaccess "$app"
+ynh_config_add_nginx
+ynh_config_add_systemd
+yunohost service add "$app" --description="ChaptarrNG audiobook library service"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting ChaptarrNG..."
 
-chaptarrng_start_service
+ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT

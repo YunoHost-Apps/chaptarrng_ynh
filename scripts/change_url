@@ -1,12 +1,22 @@
 #!/bin/bash
 
-source _common.sh
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source /usr/share/yunohost/helpers
 
 if [[ "$new_path" != "/" ]]; then
     ynh_die --message="ChaptarrNG must remain at the root of a dedicated domain."
 fi
 
+#=================================================
+# MODIFY URL IN NGINX CONF
+#=================================================
 ynh_script_progression "Updating ChaptarrNG's Nginx domain configuration..."
 ynh_change_url_nginx_config
 
-ynh_script_progression "ChaptarrNG URL update completed"
+#=================================================
+# END OF SCRIPT
+#=================================================
+ynh_script_progression "Change of URL completed for $app"

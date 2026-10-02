@@ -1,17 +1,46 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
+source /usr/share/yunohost/helpers
 
-ynh_script_progression "Installing the pinned ChaptarrNG release..."
+#=================================================
+# INSTALL SYSTEM DEPENDENCIES
+#=================================================
+ynh_script_progression "Installing the .NET 10 runtime..."
+
 chaptarrng_install_runtime
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression "Installing the pinned ChaptarrNG release..."
+
 ynh_setup_source --dest_dir="$install_dir"
-chown -R "$app:$app" "$install_dir"
 
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
 ynh_script_progression "Configuring the media group, Nginx proxy, and systemd service..."
-chaptarrng_prepare_service
-chaptarrng_register_service
 
+install -d -o "$app" -g "$app" -m 0700 "$data_dir" "$data_dir/tmp"
+ynh_multimedia_build_main_dir
+ynh_multimedia_addaccess "$app"
+ynh_config_add_nginx
+ynh_config_add_systemd
+yunohost service add "$app" --description="ChaptarrNG audiobook library service"
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
 ynh_script_progression "Starting ChaptarrNG..."
+
 ynh_systemctl --service="$app" --action="start"
 
+#=================================================
+# END OF SCRIPT
+#=================================================
 ynh_script_progression "ChaptarrNG installation completed"

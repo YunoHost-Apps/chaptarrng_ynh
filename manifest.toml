@@ -5,7 +5,10 @@ packaging_format = 2
 id = "chaptarrng"
 name = "ChaptarrNG"
 description.en = "Manage audiobook libraries, chapter metadata, and conversions"
+description.fr = "Gestion des bibliothèques de livres audio, des métadonnées des chapitres et des conversions"
+
 version = "0.9.938~ynh4"
+
 maintainers = ["snapetech"]
 
 [upstream]
@@ -18,8 +21,10 @@ yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = ["amd64", "arm64"]
 multi_instance = true
+
 ldap = false
 sso = false
+
 disk = "1G"
 ram.build = "100M"
 ram.runtime = "512M"
@@ -33,7 +38,9 @@ ram.runtime = "512M"
     default = "admins"
 
 [resources]
+
     [resources.sources]
+    
         [resources.sources.main]
         in_subdir = false
         format = "tar.gz"
